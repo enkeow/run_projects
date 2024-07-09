@@ -22,7 +22,6 @@ class User(db.Model):
     club_runners = relationship('Club_run_user', backref='user', lazy=True)
     races = relationship('Race_user', backref='user', foreign_keys='Race_user.user_id', lazy=True)
 
-
     def __repr__(self):
         return '<User {} {}>'.format(self.name, self.email)
 
@@ -37,7 +36,6 @@ class Race(db.Model):
     location = db.Column(db.String(100), nullable=False)
     info = db.Column(db.Text, nullable=False)
     users = relationship('Race_user', backref='race', foreign_keys='Race_user.race_id', lazy=True)
-
 
     def __repr__(self):
         return '<Race {} {}>'.format(self.name, self.location)
@@ -86,7 +84,3 @@ class Club_run_user(db.Model):
 
     def __repr__(self):
         return '<Club_run_user {} {}>'.format(self.user_id, self.club_id)
-
-
-if __name__ == "__main__":
-    Base.metadata.create_all(bind=engine)
