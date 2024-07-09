@@ -30,14 +30,15 @@ def article():
 
 @app.route("/article", methods=["POST"])
 def add_article():
-    form = LoginForm()
-        if form.validate_on_submit():
-    article = Article_run(
-        title=title,
-        text=text
-    )
-    db.session.add(article)
-    db.session.commit()
+    # form = LoginForm()
+    #     if form.validate_on_submit():
+    # article = Article_run(
+    #     title=title,
+    #     text=text
+    # )
+    # db.session.add(article)
+    # db.session.commit()
+    pass
 
 
 if __name__ == "__main__":
