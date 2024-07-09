@@ -10,6 +10,9 @@ from model import (
 )
 from flask_migrate import Migrate
 
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField 
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Konako325@localhost:5432/postgres'

@@ -124,3 +124,5 @@ dmypy.json
 веб проект.docx
 test.py
 run_projects.docx
+alembic.ini
+env.py
