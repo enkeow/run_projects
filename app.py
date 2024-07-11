@@ -14,7 +14,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired
 
-from forms import ArticleForm
+from forms import LoginForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Konako325@localhost:5432/postgres'
@@ -35,7 +35,7 @@ def article():
 
 @app.route("/article", methods=["POST"])
 def add_article():
-    form = ArticleForm()
+    form = LoginForm()
     if form.validate_on_submit():
         title = form.title.data
         text = form.text.data
@@ -47,9 +47,9 @@ def add_article():
         db.session.commit()
         flash('Статья успешно добавлена на сайт')
         return render_template('articles.html', form=form)
-    return render_template('add_article.html', form=form)
+    #return render_template('add_article.html', form=form)
 
-
+ 
 
 if __name__ == "__main__":
     app.run(debug=True)
