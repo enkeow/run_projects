@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, request
 from model import (
     db,
     User,
@@ -21,33 +21,31 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Konako325@localho
 db.init_app(app)
 migrate = Migrate(app, db)
 
+app.secret_key = 'dovlatov-chemodan'
 
 @app.route("/")
 def main_page():
     return render_template("main_page.html")
 
 
-@app.route("/article")
-def article():
-    db.session
-    return render_template("article.html")
-
-
-@app.route("/article", methods=["POST"])
+@app.route("/article", methods=["POST", "GET"])
 def add_article():
     form = LoginForm()
-    if form.validate_on_submit():
-        title = form.title.data
-        text = form.text.data
-        article= Article_run(
-            title=title,
-            text=text
-        )
-        db.session.add(article)
-        db.session.commit()
-        flash('Статья успешно добавлена на сайт')
-        return render_template('articles.html', form=form)
-    #return render_template('add_article.html', form=form)
+    if request.method == "GET":
+        return render_template("article.html", form=form)
+    elif request.method == 'POST':
+        if form.validate_on_submit():
+            title = form.title.data
+            text = form.text.data
+            article= Article_run(
+                title=title,
+                text=text
+            )
+            db.session.add(article)
+            db.session.commit()
+            flash('Статья успешно добавлена на сайт')
+            return render_template('main_page.html', form=form)
+    return render_template('main_page.html', form=form)
 
  
 

@@ -9,9 +9,10 @@ class LoginForm(FlaskForm):
         validators=[DataRequired()],
         render_kw={"class": "form-control"}
     )
-    text = StringField(
+    text = TextAreaField(
         'Текст статьи',
         validators=[DataRequired()],
-        render_kw={"class": "form-control"}
+        render_kw={"class": "form-control text", "rows": 5}
     )
     submit = SubmitField('Отправить', render_kw={"class": "btn btn-primary"})
+
