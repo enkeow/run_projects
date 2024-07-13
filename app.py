@@ -21,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Konako325@localho
 db.init_app(app)
 migrate = Migrate(app, db)
 
+from model import Article_run
 app.secret_key = 'dovlatov-chemodan'
 
 @app.route("/")
@@ -47,7 +48,12 @@ def add_article():
             return render_template('main_page.html', form=form)
     return render_template('main_page.html', form=form)
 
- 
+
+@app.route('/articles')
+def articles_page():
+    articles = Article_run.query.order_by(Article_run.id.desc()).limit(3).all()
+    return render_template('article_page.html', articles=articles)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
