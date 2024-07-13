@@ -55,5 +55,11 @@ def articles_page():
     return render_template('article_page.html', articles=articles)
 
 
+@app.route('/articles/<article_id>')
+def articles_page(article_id):
+    articles = Article_run.query.order_by(article_id)
+    return render_template('article_page.html', articles=articles)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
