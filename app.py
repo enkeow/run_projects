@@ -29,7 +29,7 @@ def main_page():
     return render_template("main_page.html")
 
 
-@app.route("/article", methods=["POST", "GET"])
+@app.route("/add_article", methods=["POST", "GET"])
 def add_article():
     form = LoginForm()
     if request.method == "GET":
@@ -46,13 +46,19 @@ def add_article():
             db.session.commit()
             flash('Статья успешно добавлена на сайт')
             return render_template('main_page.html', form=form)
-    return render_template('main_page.html', form=form)
 
 
 @app.route('/articles')
 def articles_page():
-    articles = Article_run.query.order_by(Article_run.id.desc()).limit(3).all()
+    articles = Article_run.query.order_by(Article_run.id.desc()).limit(6).all()
     return render_template('article_page.html', articles=articles)
+
+
+@app.route('/articles/<int:article_id>')
+def article_id(article_id):
+    article = Article_run.query.get_or_404(article_id)
+    
+    return render_template('article_id.html', article=article)
 
 
 if __name__ == "__main__":
