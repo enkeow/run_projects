@@ -54,12 +54,5 @@ def articles_page():
     return render_template('article_page.html', articles=articles)
 
 
-@app.route('/articles/<int:article_id>')
-def article_id(article_id):
-    article = Article_run.query.get_or_404(article_id)
-    
-    return render_template('article_id.html', article=article)
-
-
 if __name__ == "__main__":
     app.run(debug=True)
