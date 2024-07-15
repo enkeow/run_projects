@@ -58,11 +58,11 @@ def article_id(article_id):
     article = Article_run.query.get_or_404(article_id)
     return render_template('article_id.html', article=article)
 
-#@app.route('/club_run')
-#def club_run():
-#    club = Club_run.query.all()
-#    return render_template('Club_run.html', club=club)
-pass
+@app.route('/club_run')
+def club_run():
+    club = Club_run.query.all()
+    return render_template('Club_run.html', club=club)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
