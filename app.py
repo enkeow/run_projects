@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, flash, request, redirect, url_for
 from model import (
     db,
     User,
@@ -24,6 +24,7 @@ migrate = Migrate(app, db)
 from model import Article_run
 app.secret_key = 'dovlatov-chemodan'
 
+
 @app.route("/")
 def main_page():
     return render_template("main_page.html")
@@ -38,14 +39,14 @@ def add_article():
         if form.validate_on_submit():
             title = form.title.data
             text = form.text.data
-            article= Article_run(
+            article = Article_run(
                 title=title,
                 text=text
             )
             db.session.add(article)
             db.session.commit()
-            flash('Статья успешно добавлена на сайт')
-            return render_template('main_page.html', form=form)
+            #flash('Статья успешно добавлена на сайт')
+            return redirect(url_for('main_page'))
 
 
 @app.route('/articles/')
@@ -53,10 +54,12 @@ def articles_page():
     articles = Article_run.query.order_by(Article_run.id.desc()).limit(6).all()
     return render_template('article_page.html', articles=articles)
 
+
 @app.route('/articles/<int:article_id>')
 def article_id(article_id):
     article = Article_run.query.get_or_404(article_id)
     return render_template('article_id.html', article=article)
+
 
 @app.route('/club_run')
 def club_run():
