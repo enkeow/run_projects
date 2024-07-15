@@ -48,11 +48,21 @@ def add_article():
             return render_template('main_page.html', form=form)
 
 
-@app.route('/articles')
+@app.route('/articles/')
 def articles_page():
     articles = Article_run.query.order_by(Article_run.id.desc()).limit(6).all()
     return render_template('article_page.html', articles=articles)
 
+@app.route('/articles/<int:article_id>')
+def article_id(article_id):
+    article = Article_run.query.get_or_404(article_id)
+    return render_template('article_id.html', article=article)
+
+#@app.route('/club_run')
+#def club_run():
+#    club = Club_run.query.all()
+#    return render_template('Club_run.html', club=club)
+pass
 
 if __name__ == "__main__":
     app.run(debug=True)
