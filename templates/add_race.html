@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Добавить информацию о забеге</h1>
+<div class="row">
+    <div class="col-sm">
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            {{ form.name.label }}<br>
+            {{ form.name(class="form-control") }}
+            <br>
+            {{ form.distance.label }}<br>
+            {{ form.distance(class="form-control") }}
+            <br>
+            {{ form.date.label }}<br>  
+            {{ form.date(class="form-control") }}
+            <br>
+            {{ form.location.label }}<br>
+            {{ form.location(class="form-control") }}
+            <br>
+            {{ form.info.label }}<br>
+            {{ form.info(class="form-control") }}
+            <br>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-dark">{{ form.submit.label }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

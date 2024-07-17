@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Список забегов</h1>
+<div class="row">
+    {% for race in races %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ race.name }}</h5>
+                <p class="card-text">Дистанция: {{ race.distance }} км</p>
+                <p class="card-text">Дата: {{ race.date.strftime('%d.%m.%Y') }}</p>
+                <p class="card-text">Место проведения: {{ race.location }}</p>
+                <p class="card-text">{{ race.info }}</p>
+                <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="d-flex justify-content-center">
+    <a href="{{ url_for('add_race') }}" class="btn btn-outline-dark">Добавить забег</a>
+</div>
+{% endblock %}
