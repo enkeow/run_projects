@@ -95,5 +95,12 @@ def races_page():
     return render_template('races_page.html', races=races)
 
 
+@app.route('/login')
+def login():
+    title = "Авторизация"
+    login_form = LoginForm()
+    return render_template('login.html', page_title=title, form=login_form)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

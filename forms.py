@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, IntegerField, DateField, FloatField
+from wtforms import StringField, TextAreaField, SubmitField, IntegerField, DateField, FloatField, PasswordField
 from wtforms.validators import DataRequired
 
 
@@ -49,3 +49,7 @@ class RaceForm(FlaskForm):
         'Добавить забег', render_kw={"class": "btn btn-primary"}
     )
 
+class LoginForm(FlaskForm):
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    submit = SubmitField('Отправить')

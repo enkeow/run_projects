@@ -7,19 +7,19 @@
         <form action="" method="post">
             {{ form.csrf_token }}
             {{ form.name.label }}<br>
-            {{ form.name(class="form-control") }}
+            {{ form.name }}
             <br>
             {{ form.distance.label }}<br>
-            {{ form.distance(class="form-control") }}
+            {{ form.distance}}
             <br>
             {{ form.date.label }}<br>  
-            {{ form.date(class="form-control") }}
+            {{ form.date}}
             <br>
             {{ form.location.label }}<br>
-            {{ form.location(class="form-control") }}
+            {{ form.location }}
             <br>
             {{ form.info.label }}<br>
-            {{ form.info(class="form-control") }}
+            {{ form.info }}
             <br>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-outline-dark">{{ form.submit.label }}</button>
