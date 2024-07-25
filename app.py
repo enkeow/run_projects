@@ -14,7 +14,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired
 
-from forms import LoginForm, RaceForm
+from forms import LoginForm, RaceForm, ArticleForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Konako325@localhost:5432/postgres'
@@ -32,7 +32,7 @@ def main_page():
 
 @app.route("/add_article", methods=["GET", "POST"])
 def add_article():
-    form = LoginForm()
+    form = ArticleForm()
     if request.method == "GET":
         return render_template("article.html", form=form)
     elif request.method == 'POST':
@@ -95,10 +95,10 @@ def races_page():
     return render_template('races_page.html', races=races)
 
 
-@app.route('/login')
+@app.route('/login', methods =['GET', 'POST'])
 def login():
     title = "Авторизация"
-    login_form = LoginForm()
+    login_form = LoginForm()    
     return render_template('login.html', page_title=title, form=login_form)
 
 

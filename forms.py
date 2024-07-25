@@ -3,7 +3,7 @@ from wtforms import StringField, TextAreaField, SubmitField, IntegerField, DateF
 from wtforms.validators import DataRequired
 
 
-class LoginForm(FlaskForm):
+class ArticleForm(FlaskForm):
     title = StringField(
         'Заголовок статьи',
         validators=[DataRequired()],

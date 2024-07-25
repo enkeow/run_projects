@@ -1,7 +1,8 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<form>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Имя пользователя</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -14,6 +15,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
     </div>
-    <button type="submit" class="btn btn-outline-dark">Отправить</button>
+    <button type="submit" class="btn btn-outline-dark">Войти</button>
+    <button type="submit" class="btn btn-outline-dark">Зарегистрироваться</button>
   </form>
 {% endblock %}
